@@ -1,0 +1,33 @@
+create or replace storage integration s3bank_int
+    type = EXTERNAL_STAGE
+    storage_provider = s3
+    enabled = TRUE
+    storage_aws_role_arn = '### Private_link_amazon_arn_link_should_be_pasted_here ###'
+    storage_allowed_locations = ('s3://pandaczecbank/');
+
+show storage integrations;
+
+desc integration s3bank_int;
+
+
+create or replace file format banking_csv
+    type = 'csv'
+    compression = 'none'
+    field_delimiter = ','
+    field_optionally_enclosed_by = '"'
+    skip_header = 1;
+
+
+create or replace stage banking_stage
+    url = 's3://pandaczecbank/czec-banking/'
+    file_format = banking_csv
+    storage_integration = s3bank_int;
+
+
+show stages;
+
+list @banking_stage;
+
+
+
+
