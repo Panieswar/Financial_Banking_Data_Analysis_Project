@@ -1,0 +1,103 @@
+create or replace pipe district_pipe
+    auto_ingest = True
+    as
+    copy into banking_db.banking_schema.district
+    from '@BANKING_STAGE/DISTRICT/'
+    file_format = banking_csv;
+
+
+
+
+create or replace pipe acc_pipe
+    auto_ingest = True
+    as
+    copy into banking_db.banking_schema.account
+    from '@BANKING_STAGE/ACCOUNT/'
+    file_format = banking_csv;
+
+
+
+
+create or replace pipe txns_pipe
+    auto_ingest = True
+    as
+    copy into banking_db.banking_schema.transactions
+    from '@BANKING_STAGE/TRANSACTIONS/'
+    file_format = banking_csv;
+
+
+
+
+
+create or replace pipe disp_pipe
+    auto_ingest = True
+    as
+    copy into banking_db.banking_schema.disposition
+    from '@BANKING_STAGE/DISPOSITION/'
+    file_format = banking_csv;
+
+
+
+
+create or replace pipe card_pipe
+    auto_ingest = True
+    as
+    copy into banking_db.banking_schema.card
+    from '@BANKING_STAGE/CARD/'
+    file_format = banking_csv;
+
+
+
+
+
+create or replace pipe ol_pipe
+    auto_ingest = True
+    as
+    copy into banking_db.banking_schema.order_list
+    from '@BANKING_STAGE/ORDER_LIST/'
+    file_format = banking_csv;
+
+
+
+
+create or replace pipe loan_pipe
+    auto_ingest = True
+    as
+    copy into banking_db.banking_schema.loan
+    from '@BANKING_STAGE/LOAN/'
+    file_format = banking_csv;
+
+
+
+
+create or replace pipe client_pipe
+    auto_ingest = True
+    as
+    copy into banking_db.banking_schema.client
+    from '@BANKING_STAGE/CLIENT/'
+    file_format = banking_csv;
+
+
+
+show pipes;
+
+
+
+alter pipe acc_pipe refresh;
+
+alter pipe card_pipe refresh;
+
+alter pipe client_pipe refresh;
+
+alter pipe disp_pipe refresh;
+
+alter pipe district_pipe refresh;
+
+alter pipe loan_pipe refresh;
+
+alter pipe ol_pipe refresh;
+
+alter pipe txns_pipe refresh;
+
+
+
